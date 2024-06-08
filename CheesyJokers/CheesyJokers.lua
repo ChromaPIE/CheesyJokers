@@ -882,7 +882,7 @@ function SMODS.INIT.CheesyJokers()
     end
 
     SMODS.Jokers.j_cj_extraterrestrial.calculate = function(self, context)
-        if context.using_consumeable and context.consumeable.ability.set == 'Planet' and not context.consumeable.beginning_end then
+        if context.using_consumeable and (context.consumeable.ability.set == 'Planet' or context.consumeable.ability.set == 'Planet_dx') and not context.consumeable.beginning_end then
             if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
                 if pseudorandom('extraterrestrial') < G.GAME.probabilities.normal/self.ability.extra.odds then
                     if G.GAME.probabilities.normal >= self.ability.extra.odds and context.consumeable.from_extraterrestrial then
@@ -1184,7 +1184,7 @@ function SMODS.INIT.CheesyJokers()
                 return 0
             end,
             [6] = function(self, context)
-                if context.using_consumeable and context.consumeable.ability.set == 'Planet' then
+                if context.using_consumeable and (context.consumeable.ability.set == 'Planet' or context.consumeable.ability.set == 'Planet_dx') then
                     return 1 
                 else return 0 end
             end,
@@ -1811,7 +1811,7 @@ function SMODS.INIT.CheesyJokers()
             "{C:mult}+2{}倍率的{C:dark_edition}负片{C:attention}小丑"
         }},
         [9] = {text = {
-            "获得{X:red,C:white} +15 {C:red} 最大生命值"
+            "获得{X:red,C:white} +15 {C:red}最大生命值"
         }},
     }
 
