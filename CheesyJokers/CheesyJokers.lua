@@ -381,7 +381,7 @@ function SMODS.INIT.CheesyJokers()
             slug = 'cj_vending_machine',
             desc = {
                 "每次{C:red}弃牌{}获得{C:money}$#1#",
-                "每次{C:attention}出牌{}获得{C:money}$#2#"
+                "每次{C:attention}出牌{}失去{C:money}$#2#"
             },
             config = {
                 extra = {
@@ -1929,7 +1929,7 @@ function SMODS.INIT.CheesyJokers()
     ease_dollars_ref = ease_dollars
     ease_dollars = function(mod, instant)
         if next(find_joker('Coupon')) and mod < 0 then
-            mod = math.min(0, mod + 2 * #find_joker('Coupon'))
+            mod = math.min(0, mod + SMODS.Jokers.j_cj_coupon.config.extra * #find_joker('Coupon'))
             for k, v in pairs(find_joker('Coupon')) do 
                 v:juice_up(0.3, 0.3)
                 card_eval_status_text(v, 'extra', nil, nil, nil, {message = "优惠促销！", instant = true})
